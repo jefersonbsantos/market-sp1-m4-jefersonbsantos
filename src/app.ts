@@ -10,12 +10,12 @@ app.get("/products", read);
 
 app.get("/products/:id", middlewares.ensureProductExists, retrieve);
 app.patch(
-  "products/:id",
+  "/products/:id",
   middlewares.ensureProductExists,
   middlewares.ensureNameExists,
   update
 );
-app.delete("products/:id", middlewares.ensureProductExists, deleteProduct);
+app.delete("/products/:id", middlewares.ensureProductExists, deleteProduct);
 
 const PORT: number = 3000;
 const runningMsg = `Server running on http://localhost:${PORT}`;

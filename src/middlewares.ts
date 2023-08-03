@@ -25,13 +25,15 @@ const ensureNameExists = (
   res: Response,
   next: NextFunction
 ): void | Response => {
-  const productName = market.find(
-    (market: Product) => market.name === req.params.name
+  const productName: Product | undefined = market.find(
+    (market: Product) => market.name === req.body.name
   );
 
   if (productName) {
     return res.status(409).json({ message: "Product already registered." });
   }
+
+  return next();
 };
 
 export default { ensureProductExists, ensureNameExists };
