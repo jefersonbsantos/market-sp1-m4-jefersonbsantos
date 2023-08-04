@@ -9,12 +9,12 @@ const totalSum = (arr: Product[]): number => {
 };
 
 const create = (req: Request, res: Response): Response => {
-  const dueDate: Date = new Date(Date.now() + 1000 * 60 * 60 * 24 * 365);
+  const expirationDate: Date = new Date(Date.now() + 1000 * 60 * 60 * 24 * 365);
 
   const newProduct: Product = {
     ...req.body,
     id: id++,
-    dueDate,
+    expirationDate,
   };
 
   market.push(newProduct);
@@ -23,7 +23,7 @@ const create = (req: Request, res: Response): Response => {
 };
 
 const read = (req: Request, res: Response): Response => {
-  return res.status(200).json({ total: totalSum(market), market });
+  return res.status(200).json({ total: totalSum(market), products: market });
 };
 
 const retrieve = (req: Request, res: Response): Response => {
